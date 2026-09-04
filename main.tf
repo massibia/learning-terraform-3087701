@@ -4,6 +4,7 @@ data "aws_ami" "app_ami" {
   filter {
     name   = "name"
     # Sostituito con un pattern che intercetta i nuovi standard Bitnami
+    #values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
     values = ["bitnami-tomcat-*"] 
   }
 
