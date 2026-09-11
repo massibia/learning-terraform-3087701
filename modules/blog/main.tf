@@ -17,6 +17,7 @@ data "aws_ami" "app_ami" {
 
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  version = "5.0.0" # <-- CAMBIA DA 6.7.2 A 5.0.0
 
   name = var.environment.name
   cidr = "${var.environment.network_prefix}.0.0/16"
@@ -34,7 +35,7 @@ module "blog_vpc" {
 module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   #version = "6.5.2"
-  version = "5.1.0"
+  version = "5.1.0" # <-- CONFERMA QUESTA SE GIÀ MESSA
 
   name = "blog"
 
@@ -49,7 +50,8 @@ module "blog_autoscaling" {
 
 module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 6.0"
+  #version = "~> 6.0"
+  version = "8.0.0" # <-- CAMBIA DA 6.10.0 A 8.0.0 (la serie 8 supporta il provider v5)
 
   name = "blog-alb"
 
